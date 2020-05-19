@@ -23,7 +23,7 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
-    @GetMapping("listaPosts")
+    @GetMapping(value = {"", "/", "listaPosts"})
     public String listarPosts(Model model) {
         List<Post> listaPosts = postRepository.findAll();
         model.addAttribute("lista", listaPosts);
