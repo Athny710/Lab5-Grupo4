@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginControllers {
     @Autowired
-    UsusarioRepository ususarioRepository
+    UsusarioRepository ususarioRepository;
 
     @GetMapping("/loginForm")
     public String loginForm(){
