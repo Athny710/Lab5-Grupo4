@@ -8,6 +8,8 @@
 
     <div class="container" id="contenido">
         <h2>Posts</h2>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/posts/nuevoPost'}">Nuevo Post</a>
+        <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
         <table class="table">
             <thead>
             <tr>
@@ -15,6 +17,7 @@
                 <th>Título</th>
                 <th>Nombre Autor</th>
                 <th>Resumen</th>
+                <th></th>
                 <th></th>
             </tr>
             </thead>
@@ -24,7 +27,11 @@
                 <td th:text="${x.title}"></td>
                 <td th:text="${x.author}"></td>
                 <td th:text="${x.summary}"></td>
-                <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.id}}">Borrar</a>
+                <td>
+                    <a class="btn btn-primary" th:href="@{'/posts/editarPosts' + '?id=' + ${x.id_post}}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/posts/borrarPosts' + '?id=' + ${x.id_post}}">Borrar</a>
                 </td>
             </tr>
             </tbody>
