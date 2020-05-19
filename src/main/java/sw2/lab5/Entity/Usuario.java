@@ -1,10 +1,11 @@
 package sw2.lab5.Entity;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
-public class Usuario {
+
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,6 @@ public class Usuario {
     private String profile;
     @Column(nullable = false)
     private int active;
-
     @ManyToOne
     @JoinColumn(name = "id_role")
     private Role role;

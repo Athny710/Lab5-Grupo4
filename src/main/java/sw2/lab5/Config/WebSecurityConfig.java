@@ -18,7 +18,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception  {
-        http.formLogin();
+        http.formLogin()
+                .loginPage("/loginForm").loginProcessingUrl("/processLogin")
+                .usernameParameter("correo")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/redirectByRole",true);
+        http.logout().logoutUrl("/cerrar").logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
+
         http.authorizeRequests().antMatchers("/post").hasAnyAuthority("admin","user");
         http.authorizeRequests().antMatchers("/post/delete").hasAuthority("admin");
         http.authorizeRequests().antMatchers("/post/create").hasAnyAuthority("admin","user");
