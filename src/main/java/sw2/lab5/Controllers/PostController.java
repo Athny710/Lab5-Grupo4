@@ -1,6 +1,8 @@
 package sw2.lab5.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sw2.lab5.Entity.Post;
 import sw2.lab5.Repository.PostRepository;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +26,18 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
+<<<<<<< HEAD
+    @GetMapping("listaPosts")
+    public String listarPosts(Model model, Authentication auth, HttpSession session) {
+        String rol = "";
+        for(GrantedAuthority role : auth.getAuthorities()){
+            rol = role.getAuthority();
+            break;
+        }
+=======
     @GetMapping(value = {"", "/", "listaPosts"})
     public String listarPosts(Model model) {
+>>>>>>> 94685fcfdd513f051a24aa9a442a775be7517945
         List<Post> listaPosts = postRepository.findAll();
         model.addAttribute("lista", listaPosts);
 
@@ -57,6 +70,7 @@ public class PostController {
         }
     }
 
+    @GetMapping("guardarPost")
     public String guardarPost(@ModelAttribute("post") @Valid Post post,
                               BindingResult bindingResult,
                               Model model, RedirectAttributes attr){
