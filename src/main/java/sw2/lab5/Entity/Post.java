@@ -13,7 +13,7 @@ public class Post {
     private String title;
     private String summary;
     @Column(nullable = false)
-    private String published;
+    private Boolean published;
     private String content;
     @ManyToOne
     @JoinColumn(name = "author_id")
@@ -43,11 +43,11 @@ public class Post {
         this.summary = summary;
     }
 
-    public String getPublished() {
+    public Boolean getPublished() {
         return published;
     }
 
-    public void setPublished(String published) {
+    public void setPublished(Boolean published) {
         this.published = published;
     }
 
