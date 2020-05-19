@@ -59,13 +59,14 @@ public class UsuarioController {
 
     public String guardarUser(@ModelAttribute("user") @Valid Usuario usuario,
                               BindingResult bindingResult,
-                              Model model, RedirectAttributes attr){
-        if(bindingResult.hasErrors()){
+                              Model model, RedirectAttributes attr) {
+        if (bindingResult.hasErrors()) {
             return "usuario/editarUsuario";
-        }else{
-            attr.addFlashAttribute("msg", "Usuario"+(usuario.getId_user()==0 ? "creado" : "actualizado")+"exitosamente!");
+        } else {
+            attr.addFlashAttribute("msg", "Usuario" + (usuario.getId_user() == 0 ? "creado" : "actualizado") + "exitosamente!");
             ususarioRepository.save(usuario);
             return "redirect:/usuario/list";
         }
 
+    }
 }
