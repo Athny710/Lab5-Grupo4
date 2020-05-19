@@ -17,7 +17,9 @@ public class Post {
     private String content;
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Usuario author;
+
+    private Usuario usuario;
+
 
     public int getId_post() {
         return id_post;
@@ -61,10 +63,11 @@ public class Post {
 
 
     public Usuario getAuthor() {
-        return author;
+        return usuario;
     }
 
     public void setAuthor(Usuario author) {
-        this.author = author;
+        this.usuario = author;
+
     }
 }
