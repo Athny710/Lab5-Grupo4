@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import sw2.lab5.Entity.Usuario;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sw2.lab5.Entity.Post;
 import sw2.lab5.Entity.Usuario;
@@ -22,6 +27,17 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 public class UsuarioController {
+
+
+    @GetMapping("")
+    public String  info(@RequestParam("id") int id, HttpSession session) {
+        Usuario user = (Usuario) session.getAttribute("user");
+        if (user.getId_user() == id) {
+            return "User/informacion";
+        } else {
+            return "redirect:/post";
+        }
+    }
 
     @Autowired
     UsusarioRepository ususarioRepository;
@@ -44,10 +60,11 @@ public class UsuarioController {
         return "redirect:/posts/listaPosts";
     }
     @GetMapping("editarUsuario")
-    public String editarPost(@ModelAttribute("post") Post post,
-                             Model model, @RequestParam("id") int id) {
+    public String editarPost(@ModelAttribute("user") Usuario usuario,
+                             Model model, @RequestParam("id") int id, HttpSession session) {
+        Usuario user = (Usuario) session.getAttribute("user");
         Optional<Usuario> opt = ususarioRepository.findById(id);
-        if (opt.isPresent()) {
+        if (opt.isPresent() && (usuario.getId_user() == user.getId_user())) {
             return "usuario/editUsuario";
         } else {
             return "redirect:/user/list";
@@ -62,6 +79,7 @@ public class UsuarioController {
             attr.addFlashAttribute("msg", "Usuario" + (usuario.getId_user() == 0 ? "creado" : "actualizado") + "exitosamente!");
             ususarioRepository.save(usuario);
             return "redirect:/usuario/list";
+
         }
 
     }
