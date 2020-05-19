@@ -26,18 +26,9 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
-<<<<<<< HEAD
-    @GetMapping("listaPosts")
-    public String listarPosts(Model model, Authentication auth, HttpSession session) {
-        String rol = "";
-        for(GrantedAuthority role : auth.getAuthorities()){
-            rol = role.getAuthority();
-            break;
-        }
-=======
+
     @GetMapping(value = {"", "/", "listaPosts"})
     public String listarPosts(Model model) {
->>>>>>> 94685fcfdd513f051a24aa9a442a775be7517945
         List<Post> listaPosts = postRepository.findAll();
         model.addAttribute("lista", listaPosts);
 
