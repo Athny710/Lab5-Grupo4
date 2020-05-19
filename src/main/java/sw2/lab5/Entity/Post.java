@@ -2,10 +2,7 @@ package sw2.lab5.Entity;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "post")
@@ -18,7 +15,9 @@ public class Post {
     @Column(nullable = false)
     private String published;
     private String content;
-    private Author author;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Usuario author;
 
     public int getId_post() {
         return id_post;
@@ -60,12 +59,12 @@ public class Post {
         this.content = content;
     }
 
-    public Author getAuthor() {
+
+    public Usuario getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(Usuario author) {
         this.author = author;
     }
-
 }
