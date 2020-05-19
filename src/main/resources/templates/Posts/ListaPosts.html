@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="base :: head(index)">
+</head>
+<body>
+    <nav th:insert="base :: navbar"></nav>
+
+    <div class="container" id="contenido">
+        <h2>Posts</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Nombre Autor</th>
+                <th>Resumen</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="x, info : ${lista}">
+                <td th:text="${x.id_post}"></td>
+                <td th:text="${x.title}"></td>
+                <td th:text="${x.author}"></td>
+                <td th:text="${x.summary}"></td>
+                <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.id}}">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
