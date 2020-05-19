@@ -7,20 +7,25 @@
     <nav th:insert="base :: navbar"></nav>
 
     <div class="container" id="contenido">
-        <h2 th:text="${shipper.shipperId == 0? 'Nuevo Transportista' : 'Editar Transportista'}">Nuevo/Editar</h2>
+        <h2 th:text="${post.id_post == 0? 'Nuevo Post' : 'Editar Post'}"></h2>
         <hr/>
-        <form method="post" th:action="@{'/shipper/save'}" th:object="${shipper}">
-            <input type="hidden" th:field="*{shipperId}" />
+        <form method="post" th:action="@{'/post/guardarPost'}" th:object="${post}">
+            <input type="hidden" th:field="*{id_post}" />
+            <input type="hidden" th:field="*{content}" th:value="1" />
             <div class="form-group">
-                <label for="companyname">Nombre de la compañía</label>
-                <input type="text" class="form-control" th:field="*{companyname}">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" th:field="*{title}">
             </div>
             <div class="form-group">
-                <label for="phone">Teléfono</label>
-                <input type="text" class="form-control" th:field="*{phone}">
+                <label for="resumen">Resumen</label>
+                <input type="text" class="form-control" th:field="*{summary}">
             </div>
-            <a th:href="@{'/shipper/list'}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-primary" th:text="${shipper.shipperId == 0? 'Registrar' : 'Actualizar'}">Reg/act</button>
+            <div class="form-group">
+                <label for="contenido">Contenido</label>
+                <input type="text" class="form-control" th:field="*{content}">
+            </div>
+            <a th:href="@{'/post/listaPosts'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary" th:text="${post.id_post == 0? 'Registrar' : 'Actualizar'}"></button>
         </form>
     </div>
 </body>
