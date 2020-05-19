@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Title</title>
+<head th:insert="base :: head(index)">
 </head>
 <body>
 <div class="wrapper fadeInDown">
@@ -21,7 +16,8 @@
         <!-- Login Form -->
         <form method="post" th:action="@{/processLogin}" >
             <input type="text" id="correo" class="fadeIn second" name="correo" placeholder="user">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+            <h5 th:if="${param.error}" class="text-danger">Acceso Denegado </h5>
             <input type="submit" class="fadeIn fourth" value="Iniciar sesión">
         </form>
 
