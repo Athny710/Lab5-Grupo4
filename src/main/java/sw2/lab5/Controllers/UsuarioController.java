@@ -4,13 +4,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sw2.lab5.Entity.Usuario;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
 public class UsuarioController {
 
     @GetMapping("")
-    public String  info( ){
-        return "User/informacion";
+    public String  info(@RequestParam("id") int id, HttpSession session){
+        Usuario user = (Usuario) session.getAttribute("user");
+        if(user.getId_user() == id){
+            return "User/informacion";
+        }else{
+            return "redirect:/post";
+        }
+
     }
 }
