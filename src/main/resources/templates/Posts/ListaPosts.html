@@ -30,7 +30,7 @@
                 <td>
                     <a class="btn btn-primary" th:href="@{'/posts/editarPosts' + '?id=' + ${x.id_post}}">Editar</a>
                 </td>
-                <td sec:authorize="hasAnyAuthority('admin)">
+                <td sec:authorize="hasAnyAuthority('admin')">
                     <a class="btn btn-danger" th:href="@{'/posts/borrarPosts' + '?id=' + ${x.id_post}}">Borrar</a>
                 </td>
             </tr>

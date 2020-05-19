@@ -24,8 +24,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
-
 @Controller
 @RequestMapping("/user")
 public class UsuarioController {
@@ -61,8 +59,6 @@ public class UsuarioController {
         }
         return "redirect:/posts/listaPosts";
     }
-
-
     @GetMapping("editarUsuario")
     public String editarPost(@ModelAttribute("user") Usuario usuario,
                              Model model, @RequestParam("id") int id, HttpSession session) {
@@ -74,7 +70,6 @@ public class UsuarioController {
             return "redirect:/user/list";
         }
     }
-
     public String guardarUser(@ModelAttribute("user") @Valid Usuario usuario,
                               BindingResult bindingResult,
                               Model model, RedirectAttributes attr) {

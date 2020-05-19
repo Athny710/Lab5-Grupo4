@@ -25,7 +25,7 @@
                 <a class="nav-link" th:href="@{/user/list}">Listar Usuarios</a>
             </li>
             <li sec:authorize="hasAnyAuthority('admin','user')" class="nav-item">
-                <a class="nav-link" th:href="@{/product}">Ver Mi Perfil</a>
+                <a class="nav-link" th:href="@{/user}">Ver Mi Perfil</a>
             </li>
             <li sec:authorize="hasAnyAuthority('admin','user')" class="nav-item">
                 <a class="nav-link" th:href="@{/posts/crearPost}">Crear Post</a>
