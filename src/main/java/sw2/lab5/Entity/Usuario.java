@@ -1,4 +1,6 @@
 package sw2.lab5.Entity;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
